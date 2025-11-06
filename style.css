@@ -1,0 +1,382 @@
+:root{
+  --bg:#f4f6f8;
+  --card:#ffffff;
+  --text:#111827;
+  --muted:#6b7280;
+  --accent:#0ea5e9;
+  --radius:12px;
+  --container:1000px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+.container{max-width:var(--container); margin:28px auto; padding:0 16px;}
+.card{background:var(--card); border-radius:var(--radius); padding:20px; box-shadow: 0 6px 18px rgba(16,24,40,0.06); margin-bottom:20px;}
+.site-header{display:flex; justify-content:space-between; align-items:center; padding:20px; background:linear-gradient(90deg,var(--accent),#06b6d4); color:white;}
+.header-left{display:flex; align-items:center; gap:18px; max-width:70%;}
+.avatar{width:110px; height:110px; object-fit:cover; border-radius:50%; border:3px solid rgba(255,255,255,0.6); background:#e2e8f0}
+.intro h1{margin:0; font-size:22px}
+.sub{margin:4px 0; opacity:0.95}
+.sub.small{font-size:13px; opacity:0.9}
+.header-actions{margin-top:8px; display:flex; gap:8px; flex-wrap:wrap}
+.btn{background:rgba(255,255,255,0.12); color:white; text-decoration:none; padding:8px 12px; border-radius:8px; display:inline-flex; gap:8px; align-items:center; font-weight:600; border:1px solid rgba(255,255,255,0.06)}
+.btn:hover{transform:translateY(-2px); transition:all .15s}
+.btn.linkedin{background:rgba(255,255,255,0.13)}
+.btn.mail{background:rgba(255,255,255,0.16)}
+.file-btn{cursor:pointer}
+
+/* theme toggle */
+.theme-toggle{display:flex; align-items:center; gap:10px}
+.switch{position:relative; display:inline-block; width:52px; height:28px}
+.switch input{opacity:0; width:0; height:0}
+.slider{position:absolute; inset:0; background:#cbd5e1; border-radius:999px; transition:0.25s}
+.slider:before{content:""; position:absolute; width:22px; height:22px; left:3px; top:3px; background:white; border-radius:50%; transition:0.25s}
+.switch input:checked + .slider{background:#0ea5e9}
+.switch input:checked + .slider:before{transform:translateX(24px)}
+#themeLabel{font-weight:600; color:rgba(255,255,255,0.95)}
+/* ✅ Light Mode Visibility Fix for Skill Section and Lines */
+body.light-mode #skills,
+body.light-mode .card {
+  background-color: #ffffff !important;
+  color: #1a1a1a !important;
+  border: 1px solid #ccc !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Titles in blue for professional contrast */
+body.light-mode #skills h2,
+body.light-mode #skills h3 {
+  color: #0077b6 !important;
+}
+
+/* Paragraphs and descriptions readable */
+body.light-mode #skills p {
+  color: #333 !important;
+}
+
+/* Side border line near avatar fix */
+body.light-mode .avatar {
+  border: 3px solid #0077b6 !important;
+}
+
+/* Optional: subtle hover effect on skill boxes */
+body.light-mode .skill-item:hover {
+  background-color: #eef7ff !important;
+  transition: 0.3s;
+}
+
+/* Ensure contrast of all text in light mode */
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode p,
+body.light-mode span,
+body.light-mode a {
+  color: #1a1a1a !important;
+  opacity: 1 !important;
+}
+
+/* Restore dark outline lines in light theme */
+body.light-mode .card::before,
+body.light-mode .card::after {
+  background-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+/* content styling */
+h2{margin:0 0 10px 0; font-size:20px}
+p{line-height:1.6; color:var(--muted); margin:0 0 10px 0}
+.exp h3{margin:0 0 6px 0}
+.gallery, .project-img, .experience-gallery, .certificate-gallery {display:grid; gap:10px}
+.experience-gallery{grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); margin-top:12px}
+.experience-gallery img, .project-img img, .certificate-gallery img {width:100%; border-radius:10px; object-fit:cover; min-height:100px; background:#f3f4f6}
+.project-img{max-width:380px; margin-top:10px}
+.more-projects{margin-top:12px; font-weight:600; color:var(--muted)}
+
+/* academics */
+.academics-list{list-style:none; padding:0; margin:8px 0}
+.academics-list li{padding:8px 0; color:var(--text)}
+
+/* contact form */
+#contact form{display:flex; flex-direction:column; gap:10px; max-width:640px}
+#contact input, #contact textarea{padding:10px; border-radius:8px; border:1px solid #e6e9ee; font-size:15px}
+.form-actions{display:flex; gap:10px; align-items:center}
+.btn.primary{background:var(--accent); color:white; border:none}
+.form-status{color:green; font-weight:600}
+
+/* footer */
+.site-footer{background:#0f1724; color:#cbd5e1; text-align:center; padding:16px; margin-top:24px}
+
+/* dark mode variables */
+body.dark-mode{
+  --bg:#0b1220;
+  --card:#0f1724;
+  --text:#e6eef7;
+  --muted:#94a3b8;
+  --accent:#4f46e5;
+}
+body.dark-mode .site-header{background:linear-gradient(90deg,#4f46e5,#06b6d4)}
+body.dark-mode .btn{background:rgba(255,255,255,0.03); color:var(--text)}
+body.dark-mode .card{box-shadow: 0 8px 26px rgba(2,6,23,0.6)}
+
+/* responsive */
+@media (max-width:900px) {
+  /* Header adjustments */
+  .header-left {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .header-actions {
+    justify-content: center;
+  }
+
+  .container {
+    padding: 0 14px;
+  }
+
+  /* Main sections responsive layout */
+  .card, .about, .skills, .projects, .experience, .contact {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  /* Make image galleries stack vertically */
+  .experience-gallery, .certificate-gallery {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  /* Responsive images */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Responsive contact form */
+  form {
+    width: 100%;
+  }
+
+  input, textarea, button {
+    width: 100%;
+  }
+}
+
+/* General image styling for consistency */
+section img {
+  width: 100%;
+  max-width: 250px; /* limit maximum width */
+  height: auto;
+  border-radius: 12px;
+  margin: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* For internship or project image containers */
+.internship-images,
+.project-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;         /* keep if you want circular shape */
+  object-fit: cover;          /* keeps proportions */
+  object-position: center top; /* shifts visible area upward */
+  border: 3px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* 🔹 Common image gallery styling for all sections */
+.image-gallery {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.image-gallery img {
+  width: 200px;           /* change size if you want */
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.image-gallery img:hover {
+  transform: scale(1.05);
+}
+.bsnl-images {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.bsnl-images img {
+  width: 45%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+#skills {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 25px;
+  margin-top: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.skill-item {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.skill-item h3 {
+  margin-bottom: 8px;
+  color: #00bcd4;
+  font-size: 1.2em;
+}
+
+.skill-item p {
+  color: #ccc;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+/* Footer styles */
+footer {
+  text-align: center;
+  padding: 10px 0;
+  background-color: #0e1621; /* dark background */
+  color: #a8b2d1;
+  font-size: 14px;
+}
+
+/* Heart emoji color */
+footer .heart {
+  color: #ff5a5f;
+}
+
+/* Light mode footer fix */
+body.light-mode footer {
+  background-color: #f5f7fa !important;
+  color: #1a1a1a !important;
+}
+
+body.light-mode footer .heart {
+  color: #e63946 !important;
+}
+/* ---------- BLOG PAGE ---------- */
+.blog-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 20px;
+}
+
+.blog-post {
+  background: var(--card-bg, #ffffff);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-post:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.blog-post h3 {
+  color: #0077b6;
+  margin-bottom: 10px;
+}
+
+.blog-post .date {
+  font-size: 0.9em;
+  color: gray;
+  margin-bottom: 10px;
+}
+
+.blog-post p {
+  color: #333;
+  line-height: 1.6;
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 10px;
+  color: #0077b6;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+/* Light/Dark mode support */
+body.dark-mode .blog-post {
+  background: #1e1e2f;
+  color: #ddd;
+}
+
+body.dark-mode .blog-post h3 {
+  color: #4dabf7;
+}
+
+body.dark-mode .read-more {
+  color: #4dabf7;
+}
+.navbar {
+  text-align: center;
+  background: var(--card-bg);
+  padding: 10px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: var(--text-color);
+  margin: 0 15px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.navbar a:hover {
+  color: var(--accent-color);
+}
+
+.navbar a.active {
+  color: var(--accent-color);
+  border-bottom: 2px solid var(--accent-color);
+}

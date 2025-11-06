@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sayan Mondal — Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- font-awesome for icons (optional, remove if offline) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <img src="0.jpg" alt="Sayan Avatar" class="avatar" />
+      <div class="intro">
+        <h1>Sayan Mondal</h1>
+        <p class="sub">4th Year — Electronics & Communication Engineering</p>
+        <p class="sub small">Frontend • Python • Java • SQL • Learning Data Engineering</p>
+        <div class="header-actions">
+          <a class="btn" href="Sayan.pdf" download>📄 Download Resume</a>
+          <a href="https://github.com/Sayanwebdev" class="btn file-btn" target="_blank">Visit My GitHub</a>
+          <a class="btn linkedin" href="https://linkedin.com/in/sayan-mondal-746255314" target="_blank" rel="noopener">🔗 LinkedIn</a>
+          <a class="btn mail" href="mailto:myself@sayan.qzz.io">✉️ Email</a>
+          <!-- 📝 New Blog button --> 
+           <!-- that comment out line is for when my blog is ready then its just uncomment that line and remove the next line -->
+          <!-- <a class="btn blog-btn" href="blog.html">📝 Blog</a>
+ 
+           <a href="#" onclick="comingSoon()">📝 Blog</a> -->
+          <a href="#" class="btn blog-btn" onclick="comingSoon()">📝 Blog</a>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <!-- theme toggle -->
+      <div class="theme-toggle">
+        <label class="switch">
+          <input type="checkbox" id="themeSwitch" />
+          <span class="slider"></span>
+        </label>
+        <span id="themeLabel">Light Mode</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- About -->
+    <section id="about" class="card">
+      <h2>About Me</h2>
+      <p>
+        I am a 4th year B.Tech student (ECE) at Dr. B. C. Roy Engineering College, Durgapur.
+        I build front-ends and work with Python & Java. Currently expanding my skills into Data Engineering.
+        Ongoing project: <strong>Prepaid Energy Meter (ESP32)</strong> — firmware, data logging, and dashboard.
+      </p>
+    </section>
+    <!-- Skills -->
+<section id="skills" class="card">
+  <h2>Technical Skills</h2>
+  <div class="skills-container">
+    <div class="skill-item">
+      <h3>Programming Languages</h3>
+      <p>Proficient in <strong>Python</strong>, <strong>Java</strong>, and <strong>SQL</strong> with hands-on experience in problem solving, backend scripting, and data manipulation.</p>
+    </div>
+
+    <div class="skill-item">
+      <h3>Web Development</h3>
+      <p>Skilled in <strong>Front-End Development</strong> using HTML, CSS, and JavaScript. Experienced in building responsive and user-friendly interfaces using <strong>React.js</strong>.</p>
+    </div>
+
+    <div class="skill-item">
+      <h3>Cloud & Tools</h3>
+      <p>Familiar with <strong>AWS Cloud Services</strong>, Git, and version control systems. Comfortable working in collaborative environments using industry-standard tools.</p>
+    </div>
+    <div class="skill-item">
+      <h3>Embedded Systems & IoT</h3>
+      <p>Practical knowledge of <strong>Embedded Systems</strong> and <strong>Internet of Things (IoT)</strong> using <strong>ESP32</strong> and microcontrollers. Experienced in hardware interfacing, sensor integration, and real-time data monitoring. 
+      Currently developing a <strong>Prepaid Energy Meter</strong> project focused on smart energy management.</p>
+    </div>
+    <div class="skill-item">
+      <h3>Other Skills</h3>
+      <p>Strong understanding of software design principles, data structures, and databases. Enthusiastic about learning <strong>Data Engineering</strong> and modern cloud technologies.</p>
+    </div>
+  </div>
+</section>
+
+    <!-- Experience -->
+    <section id="experience" class="card">
+      <h2>Experience</h2>
+
+      <article class="exp">
+        <h3>BSNL Internship — Telecom Trainee</h3>
+        <p><strong>Location:</strong> Burdwan &nbsp; | &nbsp; <strong>Duration:</strong> June–July 2025</p>
+        <p>
+          Hands-on telecom trainee work: optical fiber systems, fiber maintenance, traffic control, and NGN (Next Generation Network)
+          operations. Assisted in testing fiber links, analyzing traffic loads and learning broadband provisioning procedures.
+        </p>
+       <div class="bsnl-images">
+  <img src="9.jpg" alt="BSNL 1" />
+  <img src="4.jpg" alt="BSNL 2" />
+      <p> <strong>BSNL Internship Certificate</strong> — Successfully completed an internship at BSNL Burdwan as a Telecom Trainee. 
+        The certificate was received from the <strong>Assistant General Manager (AGM)</strong> for outstanding performance and learning in Optical Fiber Communication, Traffic Control, and NGN technologies.
+      </p>
+    </div>
+          
+      <div class="gallery bsnl-gallery">
+        <img src="1.jpg" alt="BSNL 3" />
+          <img src="2.jpg" alt="BSNL 4" />
+          <img src="3.jpg" alt="BSNL 5" />
+        </div>
+      </article>
+
+      <article class="exp">
+        <h3>SkillCraft Technology — Web Development Intern</h3>
+        <p><strong>Duration:</strong> 01 july–31 july 2024</p>
+        <p>Built responsive UI using HTML, CSS and JavaScript; participated in code reviews and UI improvements.</p>
+        <div class="certificate-gallery">
+          <img src="5.jpg" alt="SkillCraft Certificate placeholder" />
+        </div>
+      </article>
+
+      <article class="exp">
+        <h3>Pinnacle Labs — Python Intern</h3>
+        <p><strong>Duration:</strong> 27 aug-26 sept 2025</p>
+        <p>Worked with Python for automation and basic data processing workflows; practiced debugging and scripting for small projects.</p>
+        <div class="certificate-gallery">
+          <img src="8.jpg" alt="Pinnacle Certificate placeholder" />
+        </div>
+      </article>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="card">
+      <h2>Projects</h2>
+
+      <div class="project">
+        <h3>Prepaid Energy Meter (ESP32)</h3>
+        <p>
+          IoT-based prepaid energy meter using ESP32 — measures consumption, logs readings, and connects to a dashboard.
+          Features planned: MQTT telemetry, local storage, threshold alerts and prepaid balance logic.
+        </p>
+        <div class="project-img">
+          <img src="11.png" alt="Prepaid Energy Meter placeholder" />
+        </div>
+      </div>
+
+      <p class="more-projects">⚙️ More projects coming soon...</p>
+    </section>
+
+    <!-- Academics -->
+    <section id="academics" class="card">
+      <h2>Academics</h2>
+      <ul class="academics-list">
+        <li><strong>B.Tech</strong> — Dr. B. C. Roy Engineering College, Durgapur (ongoing)</li>
+        <li><strong>Higher Secondary</strong> — Maliara R. N. High School (HSC)</li>
+        <li><strong>Secondary</strong> — Nityanandapur High School (SSC)</li>
+      </ul>
+    </section>
+
+    <!-- Certifications -->
+<section id="certifications" class="card">
+  <h2>Certifications</h2>
+
+  <div class="certificate-gallery">
+    <img src="6.jpg" alt="AI Tools Workshop Certificate" />
+    <p><strong>AI Tools Workshop (Be10x)</strong> — Completed a 3-hour workshop focused on using Artificial Intelligence tools to enhance productivity and automate tasks efficiently.</p>
+  </div>
+
+  <div class="certificate-item">
+    <img src="7.jpg" alt="MATLAB Programming Certificate" />
+    <p><strong>MATLAB Programming Certification</strong> — Gained hands-on experience with MATLAB for engineering problem-solving, data visualization, and signal processing applications.</p>
+  </div>
+
+  <div class="certificate-item">
+    <img src="10.jpg" alt="Power BI Workshop Certificate" />
+    <p><strong>Power BI Workshop (OfficeMaster)</strong> — Successfully completed the Power BI Workshop on August 17th, 2025. Skilled in creating AI-powered interactive dashboards in Power BI in under 30 minutes.</p>
+  </div>
+
+  <p class="coming-soon">🎖️ More certifications coming soon...</p>
+</section>
+
+    
+
+    <!-- Hobbies -->
+    <section id="hobbies" class="card">
+      <h2>Hobbies</h2>
+      <p>🏏 Cricket &nbsp; | &nbsp; 🏸 Badminton &nbsp; | &nbsp; 💻 Coding &nbsp; | &nbsp; 📸 Photography</p>
+    </section>
+
+    <!-- Get in touch -->
+    <section id="contact" class="card">
+      <h2>Get in Touch</h2>
+      <p>If you'd like to connect, send me a message — I'll reply as soon as I can.</p>
+
+     <form action="https://formspree.io/f/xzzkjkzq" method="POST">
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <textarea name="message" placeholder="Your Message" required></textarea>
+  <button type="submit">Send Message</button>
+</form>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 Sayan Mondal • Built with ❤️ by Sayan </p>
+  </footer>
+<!-- Blog Coming Soon Popup -->
+<div id="popup" style="display:none; position:fixed; top:50%; left:50%;
+transform:translate(-50%, -50%); background:var(--popup-bg); color:var(--popup-text);
+padding:20px 25px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.25); z-index:1000; text-align:center;">
+  <h3>🛠️ Blog Page Coming Soon!</h3>
+  <button onclick="closePopup()" style="margin-top:12px; padding:6px 14px; border:none; border-radius:8px; background:#007bff; color:white; cursor:pointer;">OK</button>
+</div>
+
+<script>
+  // Light/Dark adaptive colors
+  function setPopupTheme() {
+    const isDark = document.body.classList.contains('dark-mode');
+    document.documentElement.style.setProperty('--popup-bg', isDark ? '#222' : '#fff');
+    document.documentElement.style.setProperty('--popup-text', isDark ? '#fff' : '#000');
+  }
+
+  function comingSoon() {
+    setPopupTheme();
+    document.getElementById('popup').style.display = 'block';
+  }
+
+  function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+  }
+
+  // Update popup theme automatically when user switches mode
+  const observer = new MutationObserver(setPopupTheme);
+  observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+</script>
+
+  <script src="script.js"></script>
+</body>
+</html>

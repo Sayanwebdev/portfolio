@@ -1,75 +1,213 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sayan Mondal | Blog</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sayan Mondal — Blog</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class', // Enable dark mode using a class
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'], // Set Inter as the default sans-serif font
+          },
+        },
+      },
+    }
+  </script>
+  
+  <style>
+    /* Custom styles for the theme toggle switch */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px; /* Smaller width */
+      height: 28px; /* Smaller height */
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 28px; /* Fully rounded */
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px; /* Smaller circle */
+      width: 20px; /* Smaller circle */
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #2563eb; /* Blue color */
+    }
+    input:checked + .slider:before {
+      transform: translateX(22px); /* Adjusted translation */
+    }
+  </style>
 </head>
-<body>
+<body class="font-sans bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
 
   <!-- Header -->
- <header class="navbar">
-  <nav>
-    <a href="index.html">🏠 Home</a>
-    <a href="blog.html" class="active">📝 Blog</a>
-    <a href="index.html#contact">📩 Contact</a>
-  </nav>
-</header>
+  <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-40">
+    <nav class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+      <!-- Logo/Title -->
+      <div>
+        <a href="index.html" class="text-xl font-bold text-blue-600 dark:text-blue-400">Sayan Mondal</a>
+      </div>
 
-  <!-- Blog Section -->
-  <section id="blog" class="card">
-    <h2>Recent Posts</h2>
-    <div class="blog-container">
+      <!-- Navigation Links -->
+      <div class="flex items-center space-x-4 sm:space-x-6">
+        <a href="index.html" class="text-base font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          <i class="fas fa-home sm:mr-1"></i> <span class="hidden sm:inline">Home</span>
+        </a>
+        <a href="blog.html" class="text-base font-medium text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400 pb-1">
+          <i class="fas fa-pen-nib sm:mr-1"></i> <span class="hidden sm:inline">Blog</span>
+        </a>
+        <a href="index.html#contact" class="text-base font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          <i class="fas fa-envelope sm:mr-1"></i> <span class="hidden sm:inline">Contact</span>
+        </a>
 
-      <!-- Post 1 -->
-     <article class="blog-post">
-  <h3>Building a Prepaid Energy Meter using ESP32 ⚡</h3>
-  <p class="date">Published: October 2025</p>
-  <p>
-    In this project, I developed a <strong>smart prepaid energy metering system</strong> using the ESP32 microcontroller. 
-    The system accurately measures real-time power consumption with the help of <strong>current and voltage sensors</strong> 
-    and automatically deducts credit based on energy usage. Once the prepaid balance reaches zero, 
-    the power supply is automatically disconnected to prevent overuse.
-  </p>
-  <p>
-    To enhance functionality, I integrated <strong>IoT connectivity</strong> that allows users to 
-    monitor their energy consumption and remaining balance through a <strong>cloud dashboard</strong>. 
-    The system also supports <strong>online recharge</strong> features and real-time alerts via 
-    <strong>Firebase or Blynk</strong> platforms. 
-  </p>
-  <p>
-    This project demonstrates how IoT and automation can make energy billing more transparent, 
-    efficient, and user-friendly, particularly in smart home and industrial applications.
-  </p>
-  <a href="#" class="read-more">Read More →</a>
-</article>
+        <!-- Theme Toggle -->
+        <div class="theme-toggle pl-2 sm:pl-4 border-l border-gray-200 dark:border-gray-700">
+          <label class="switch">
+            <input type="checkbox" id="themeSwitch" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </nav>
+  </header>
 
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8">
 
-      <!-- Post 2 -->
-      <article class="blog-post">
-        <h3>What I Learned from My BSNL Internship 📡</h3>
-        <p class="date">Published: July 2025</p>
-        <p>Hands-on experience with optical fiber, broadband, and mobile networks gave me a deep understanding of real-world telecom systems.</p>
-        <a href="#" class="read-more">Read More →</a>
-      </article>
+    <!-- Blog Section -->
+    <section id="blog">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Recent Posts</h2>
+      
+      <div class="space-y-8">
 
-      <!-- Post 3 -->
-      <article class="blog-post">
-        <h3>Journey into Data Engineering 🚀</h3>
-        <p class="date">Published: November 2025</p>
-        <p>My transition from embedded systems to data engineering — exploring Python, SQL, and ETL pipelines for real-world data processing.</p>
-        <a href="#" class="read-more">Read More →</a>
-      </article>
+        <!-- Post 1 -->
+        <article class="blog-post bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-xl">
+          <div class="p-6 sm:p-8">
+            <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">Building a Prepaid Energy Meter using ESP32 ⚡</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Published: October 2025</p>
+            <div class="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+              <p>
+                In this project, I developed a <strong>smart prepaid energy metering system</strong> using the ESP32 microcontroller. 
+                The system accurately measures real-time power consumption with the help of <strong>current and voltage sensors</strong> 
+                and automatically deducts credit based on energy usage. Once the prepaid balance reaches zero, 
+                the power supply is automatically disconnected to prevent overuse.
+              </p>
+              <p>
+                To enhance functionality, I integrated <strong>IoT connectivity</strong> that allows users to 
+                monitor their energy consumption and remaining balance through a <strong>cloud dashboard</strong>. 
+                The system also supports <strong>online recharge</strong> features and real-time alerts via 
+                <strong>Firebase or Blynk</strong> platforms. 
+              </p>
+              <p>
+                This project demonstrates how IoT and automation can make energy billing more transparent, 
+                efficient, and user-friendly, particularly in smart home and industrial applications.
+              </p>
+            </div>
+            <a href="#" class="inline-block text-blue-600 dark:text-blue-400 font-semibold mt-6 hover:underline">
+              Read More →
+            </a>
+          </div>
+        </article>
 
-    </div>
-  </section>
+        <!-- Post 2 -->
+        <article class="blog-post bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-xl">
+          <div class="p-6 sm:p-8">
+            <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">What I Learned from My BSNL Internship 📡</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Published: July 2025</p>
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+              Hands-on experience with optical fiber, broadband, and mobile networks gave me a deep understanding of real-world telecom systems.
+            </p>
+            <a href="#" class="inline-block text-blue-600 dark:text-blue-400 font-semibold mt-6 hover:underline">
+              Read More →
+            </a>
+          </div>
+        </article>
+
+        <!-- Post 3 -->
+        <article class="blog-post bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-xl">
+          <div class="p-6 sm:p-8">
+            <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">Journey into Data Engineering 🚀</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Published: November 2025</p>
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+              My transition from embedded systems to data engineering — exploring Python, SQL, and ETL pipelines for real-world data processing.
+            </D>
+            <a href="#" class="inline-block text-blue-600 dark:text-blue-400 font-semibold mt-6 hover:underline">
+              Read More →
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
 
   <!-- Footer -->
-  <footer>
+  <footer class="text-center py-8 text-gray-600 dark:text-gray-400 mt-8">
     <p>© 2025 Sayan Mondal • Built with ❤️ by Sayan</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // === Theme Toggle Script ===
+    const themeSwitch = document.getElementById('themeSwitch');
+    const htmlEl = document.documentElement;
+
+    function setTheme(theme) {
+      if (theme === 'dark') {
+        htmlEl.classList.add('dark');
+        themeSwitch.checked = true;
+        localStorage.setItem('theme', 'dark');
+      } else {
+        htmlEl.classList.remove('dark');
+        themeSwitch.checked = false;
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    // Apply saved theme on load
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+
+    // Add event listener
+    themeSwitch.addEventListener('change', () => {
+      setTheme(themeSwitch.checked ? 'dark' : 'light');
+    });
+  </script>
+
 </body>
 </html>

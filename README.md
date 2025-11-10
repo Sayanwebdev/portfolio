@@ -8,7 +8,7 @@ This website showcases my projects, skills, experience, and achievements in the 
 
 🚀 Live Demo
 
-🔗 Portfolio Link: https//:portfolio.sayan.qzz.io
+🔗 Portfolio Link: https://portfolio.sayan.qzz.io
 
 
 ---
@@ -37,16 +37,12 @@ It is fully responsive and works smoothly on desktop and mobile.
 
 HTML5
 
-CSS3 / Tailwind / Bootstrap (if used)
+Tailwind 
 
 JavaScript
 
-React.js (if used)
+Render
 
-Node.js / Express (optional backend)
-
-Render / Vercel / Netlify for deployment
-(Update the stack according to your project)
 
 
 

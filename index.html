@@ -323,34 +323,59 @@
 
     <!-- Get in touch -->
     <section id="contact" class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
-      <div class="p-5 sm:p-6 border-b border-gray-200 dark:border-gray-700">
+      <div class="p-5 sm:p-6 border-b border-gray-200 dark:border-gray-700 text-center">
         <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Get in Touch</h2>
       </div>
       <div class="p-5 sm:p-6">
-        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">If you'd like to connect, send me a message — I'll reply as soon as I can.</p>
+        <p class="text-center text-gray-700 dark:text-gray-300 leading-relaxed mb-6 max-w-lg mx-auto">If you'd like to connect, send me a message — I'll reply as soon as I can.</p>
 
-  <form id="contactForm" action="https://formspree.io/f/xzzkjkzq" method="POST" class="space-y-4">
+  <form id="contactForm" action="https://formspree.io/f/xzzkjkzq" method="POST" class="mx-auto mb-0 mt-8 max-w-md space-y-4">
           <div>
             <label for="name" class="sr-only">Your Name</label>
-            <input 
-              type="text" 
-              name="name" 
-              id="name"
-              placeholder="Your Name" 
-              required 
-              class="block w-full px-4 py-3 rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            />
+            <div class="relative">
+              <input 
+                type="text" 
+                name="name" 
+                id="name"
+                placeholder="Your Name" 
+                required 
+                class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 p-4 pe-12 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+              />
+              <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </span>
+            </div>
           </div>
           <div>
             <label for="email" class="sr-only">Your Email</label>
-            <input 
-              type="email" 
-              name="email" 
-              id="email"
-              placeholder="Your Email" 
-              required 
-              class="block w-full px-4 py-3 rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            />
+            <div class="relative">
+              <input 
+                type="email" 
+                name="email" 
+                id="email"
+                placeholder="Your Email" 
+                required 
+                class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 p-4 pe-12 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+              />
+              <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
+                <svg
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  class="h-6 w-6 text-gray-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                    stroke-linecap="round"
+                  ></path>
+                </svg>
+              </span>
+            </div>
           </div>
           <div>
             <label for="message" class="sr-only">Your Message</label>
@@ -360,15 +385,17 @@
               placeholder="Your Message" 
               required 
               rows="5"
-              class="block w-full px-4 py-3 rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 p-4 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
             ></textarea>
           </div>
-          <button 
-            type="submit"
-            class="w-full sm:w-auto inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-0.5"
-          >
-            Send Message
-          </button>
+          <div class="flex justify-center">
+            <button 
+              type="submit"
+              class="w-full rounded-lg bg-blue-600 hover:bg-blue-700 px-5 py-3 text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 shadow-md transition duration-300 ease-in-out transform hover:-translate-y-0.5"
+            >
+              Send Message
+            </button>
+          </div>
         </form>
       </div>
     </section>
@@ -376,7 +403,15 @@
 
   <!-- Footer -->
   <footer class="text-center py-8 text-gray-600 dark:text-gray-400">
+    <!-- NEW: Current Time -->
+    <p id="currentTime" class="text-sm mb-2"></p>
+    
     <p>© 2025 Sayan Mondal • Built with ❤️ by Sayan</p>
+    
+    <!-- NEW: View Counter -->
+    <p class="text-xs mt-2">
+      You have visited this page <span id="viewCount" class="font-semibold">0</span> times.
+    </p>
   </footer>
 
   <!-- Blog Coming Soon Popup -->
@@ -499,6 +534,52 @@
         }
       });
     }
+
+    // === NEW: Current Time Clock ===
+    const timeEl = document.getElementById('currentTime');
+    function updateTime() {
+      if (timeEl) {
+        const now = new Date();
+        const options = {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit',
+          second: '2-digit',
+          timeZone: 'Asia/Kolkata', // IST
+          timeZoneName: 'short'
+        };
+        // Using en-GB for a format like "Wednesday, 12 November 2025 at 12:27:00 AM IST"
+        timeEl.textContent = `Current Time (Bankura, IST): ${now.toLocaleString('en-GB', options)}`;
+      }
+    }
+    // Initialize time and set interval to update every second
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    // === NEW: View Counter ===
+    const viewCountEl = document.getElementById('viewCount');
+    function updateViewCount() {
+      if (viewCountEl) {
+        let count = localStorage.getItem('sayanPortfolioViewCount');
+        if (count) {
+          // If a count exists, parse it and increment
+          count = parseInt(count, 10) + 1;
+        } else {
+          // If no count exists, this is the first visit
+          count = 1;
+        }
+        // Save the new count to localStorage
+        localStorage.setItem('sayanPortfolioViewCount', count);
+        // Display the new count on the page
+        viewCountEl.textContent = count;
+      }
+    }
+    // Initialize view count on page load
+    updateViewCount();
+
   </script>
 
 </body>

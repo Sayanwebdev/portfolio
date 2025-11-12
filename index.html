@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en" class="scroll-smooth">
 <head>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Sayan Mondal — Portfolio</title>
@@ -40,7 +41,6 @@
   </style>
 </head>
 <body class="font-sans bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-
   <!-- Header -->
   <header class="bg-white dark:bg-gray-800 shadow-md">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -314,6 +314,38 @@
     </section>
 
     <!-- Get in touch -->
+    <!-- Moved: Test Magic Link Login (demo-only) -->
+    <section id="login" class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-6 sm:mb-8">
+      <div class="p-5 sm:p-6">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Test Magic Link Login</h2>
+
+        <p class="text-sm text-yellow-600 dark:text-yellow-400 mb-3">Note: This login feature is included for project demo purposes only and is not intended for production use.</p>
+
+        <form id="magic-link-form" class="mx-auto max-w-md space-y-4">
+          <div>
+            <label for="magic-email" class="sr-only">Your Email</label>
+            <div class="relative">
+              <input 
+                type="email" 
+                id="magic-email"
+                placeholder="Enter your email for a magic link" 
+                required 
+                class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 p-4 pe-12 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+              />
+            </div>
+          </div>
+          <div class="flex justify-center">
+            <button 
+              type="submit"
+              class="w-full rounded-lg bg-green-600 hover:bg-green-700 px-5 py-3 text-sm font-medium text-white shadow-md transition"
+            >
+              Send Magic Link
+            </button>
+          </div>
+        </form>
+        <p id="magic-message" class="text-center text-green-500 mt-4 font-medium hidden"></p>
+      </div>
+    </section>
     <section id="contact" class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
       <div class="p-5 sm:p-6 border-b border-gray-200 dark:border-gray-700 text-center">
         <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Get in Touch</h2>
@@ -572,6 +604,68 @@
     // Initialize view count on page load
     updateViewCount();
 
+    // === START OF MAGIC LINK SCRIPT ===
+
+// 1. Your Supabase keys (I've filled them in for you)
+const SUPABASE_URL = 'https://tapzvspjpbwelgjpwkml.supabase.co'; 
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRhcHp2c3BqcGJ3ZWxnanB3a21sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI3OTAzOTksImV4cCI6MjA3ODM2NjM5OX0.7jRUiUWDxf4veK4l0PTo1iFFliwsxKJWlpC_FWKNbYs';
+
+// 2. Initialize the Supabase client
+// Make sure you've added the supabase JS file in your <head>
+// <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// 3. Get the form and message elements
+const magicForm = document.getElementById('magic-link-form');
+const magicEmailInput = document.getElementById('magic-email');
+const magicMessage = document.getElementById('magic-message');
+
+// 4. Listen for the form submission
+if (magicForm) {
+  magicForm.addEventListener('submit', async (event) => {
+    event.preventDefault(); // Stop the form from submitting normally
+    
+    const email = magicEmailInput.value;
+    magicMessage.classList.add('hidden'); // Hide old messages
+
+    try {
+      // 5. This is the "magic" part
+      const { data, error } = await supabase.auth.signInWithOtp({
+        email: email,
+        options: {
+          // This is where Supabase will send the user AFTER they click the link
+          emailRedirectTo: window.location.origin 
+        }
+      });
+
+      if (error) {
+        throw error; // If Supabase has an error, stop here
+      }
+
+      // 6. Success!
+      magicMessage.textContent = 'Success! Check your email for the magic link.';
+      magicMessage.classList.remove('hidden');
+      magicForm.reset();
+
+    } catch (error) {
+      console.error('Error sending magic link:', error.message);
+      magicMessage.textContent = 'Error: ' + error.message;
+      magicMessage.classList.remove('hidden');
+    }
+  });
+}
+
+// 7. (Optional) Check if a user is already logged in
+// This will run when the page loads
+(async () => {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (user) {
+    console.log('User is already logged in:', user.email);
+    // You could show a "Welcome back!" message here
+  }
+})();
+
+// === END OF MAGIC LINK SCRIPT ===
   </script>
 
 </body>

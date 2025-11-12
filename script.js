@@ -1,37 +1,45 @@
-// Theme toggle with persistence (fixed: explicitly add light-mode)
+// Theme toggle with persistence (use Tailwind's `dark` class on <html>)
 const themeSwitch = document.getElementById('themeSwitch');
 const themeLabel = document.getElementById('themeLabel');
-const body = document.body;
+const htmlEl = document.documentElement; // <html>
 
-// initialize theme from localStorage
+// initialize theme from localStorage (fall back to system preference)
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'dark') {
-  body.classList.add('dark-mode');
-  body.classList.remove('light-mode');
+  htmlEl.classList.add('dark');
   themeSwitch.checked = true;
   themeLabel.textContent = 'Dark Mode';
-} else {
-  // default -> light mode
-  body.classList.add('light-mode');
-  body.classList.remove('dark-mode');
+} else if (savedTheme === 'light') {
+  htmlEl.classList.remove('dark');
   themeSwitch.checked = false;
   themeLabel.textContent = 'Light Mode';
+} else {
+  // no saved preference -> follow system
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (prefersDark) {
+    htmlEl.classList.add('dark');
+    themeSwitch.checked = true;
+    themeLabel.textContent = 'Dark Mode';
+  } else {
+    htmlEl.classList.remove('dark');
+    themeSwitch.checked = false;
+    themeLabel.textContent = 'Light Mode';
+  }
 }
 
 themeSwitch.addEventListener('change', () => {
   if (themeSwitch.checked) {
-    // switch to dark
-    body.classList.add('dark-mode');
-    body.classList.remove('light-mode');
+    // switch to dark (Tailwind expects 'dark' class on <html>)
+    htmlEl.classList.add('dark');
     localStorage.setItem('theme', 'dark');
     themeLabel.textContent = 'Dark Mode';
   } else {
     // switch to light
-    body.classList.add('light-mode');
-    body.classList.remove('dark-mode');
+    htmlEl.classList.remove('dark');
     localStorage.setItem('theme', 'light');
     themeLabel.textContent = 'Light Mode';
   }
+  // bg-effects.js listens to the themeSwitch 'change' event and to storage for cross-window sync
 });
 
 

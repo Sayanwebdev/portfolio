@@ -38,9 +38,122 @@
     /* Using Tailwind utility classes for the new Uiverse-style toggle.
        Old .switch/.slider CSS removed — the toggle now uses inline Tailwind classes
        and the input keeps id="themeSwitch" so existing JS works unchanged. */
+    /* Subtle background effects (light + dark) */
+    .page-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0; /* make visible above body background but behind content */
+      pointer-events: none;
+      transition: opacity 400ms ease-in-out;
+    }
+
+    /* Light mode: soft radial gradient / paper-like fade */
+    .page-bg .light-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(59,130,246,0.06), transparent 10%),
+                  radial-gradient(900px 400px at 90% 80%, rgba(99,102,241,0.04), transparent 12%),
+                  linear-gradient(180deg, rgba(255,255,255,0.6), rgba(250,250,250,0.4));
+      mix-blend-mode: normal;
+      opacity: 1;
+    }
+
+    /* Dark mode: animated subtle RGB glow */
+    .page-bg .dark-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background: radial-gradient(600px 300px at 10% 20%, rgba(59,130,246,0.06), transparent 10%),
+                  radial-gradient(500px 250px at 80% 70%, rgba(99,102,241,0.05), transparent 12%),
+                  linear-gradient(180deg, rgba(10,10,12,0.6), rgba(17,24,39,0.6));
+      filter: blur(30px) saturate(120%);
+      opacity: 1;
+      transition: opacity 600ms ease-in-out;
+    }
+
+    /* Animated RGB overlay (slightly stronger for visibility) */
+    .page-bg .rgb-anim {
+      position: absolute;
+      inset: 0;
+      /* stronger, brighter RGB overlay */
+      background: conic-gradient(from 0deg, rgba(255,0,120,0.12), rgba(0,160,255,0.12), rgba(120,255,100,0.12), rgba(255,0,120,0.12));
+      mix-blend-mode: overlay;
+      opacity: 0.95;
+      animation: spinColors 40s linear infinite;
+      filter: blur(36px) contrast(140%);
+      pointer-events: none;
+      transform-origin: center center;
+      will-change: transform, opacity;
+    }
+
+    @keyframes spinColors {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Respect reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      .page-bg .rgb-anim { animation: none; }
+    }
+
+    /* Interactive cursor glow (follows pointer) */
+    .cursor-glow {
+      position: fixed;
+      left: 0;
+      top: 0;
+  width: 120vmax; /* almost full screen - increased */
+  height: 120vmax;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate3d(-50%, -50%, 0) scale(1);
+      transition: width 160ms ease, height 160ms ease, opacity 160ms ease, transform 220ms cubic-bezier(.2,.8,.2,1);
+      z-index: 50;
+  mix-blend-mode: screen; /* brighter, light RGB effect */
+  opacity: 0.98;
+  filter: blur(18px) saturate(140%);
+  /* light RGB ring: faint center, vivid colored rim */
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02) 0%, rgba(255,200,220,0.02) 30%, rgba(255,120,180,0.18) 56%, rgba(80,200,255,0.22) 70%, rgba(120,255,140,0.16) 82%, transparent 92%);
+      will-change: transform, opacity, width, height;
+      display: block;
+      pointer-events: none;
+      touch-action: none;
+    }
+
+    /* line texture overlay inside rgb-anim */
+    .page-bg .rgb-anim::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      mix-blend-mode: overlay;
+      opacity: 0.12;
+      background: repeating-linear-gradient(90deg, rgba(255,255,255,0.04) 0 2px, transparent 2px 10px);
+      will-change: background-position, opacity;
+      animation: slideLines 8s linear infinite;
+    }
+
+    @keyframes slideLines { from { background-position: 0 0 } to { background-position: 400px 0 } }
+
+    /* Hide on small/touch devices for usability */
+      @media (max-width: 800px), (pointer: coarse) {
+        .cursor-glow { display:none !important; }
+      }
   </style>
 </head>
 <body class="font-sans bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+  <!-- Background wrapper for subtle effects -->
+  <div class="page-bg" aria-hidden="true">
+    <!-- cursor glow moved inside page-bg so it sits beneath overlay layers -->
+    <div id="cursorGlow" class="cursor-glow"></div>
+    <div class="light-layer dark:hidden" style="z-index:3"></div>
+    <div class="dark-layer hidden dark:block" style="z-index:3"></div>
+  <!-- RGB animated overlay: visible in both themes; JS will tune colors per theme -->
+  <div class="rgb-anim" style="opacity:1; z-index:4"></div>
+  </div>
+
+  <!-- Site content wrapper to keep content above the background -->
+  <div class="site-content relative z-10">
   <!-- Header -->
   <header class="bg-white dark:bg-gray-800 shadow-md">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -61,7 +174,7 @@
         </div>
 
         <!-- Header Right: Theme Toggle (Uiverse-style, adapted) -->
-        <div class="flex items-center space-x-2">
+        <div class="flex items-center space-x-4">
           <div class="theme-toggle text-center relative">
             <label class="inline-flex items-center relative">
               <!-- Keep id="themeSwitch" so existing JS continues to work -->
@@ -667,6 +780,83 @@ if (magicForm) {
 
 // === END OF MAGIC LINK SCRIPT ===
   </script>
+
+  <script>
+    // Interactive cursor glow (smooth trailing)
+    (function(){
+      const glow = document.getElementById('cursorGlow');
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Show the glow only in dark mode for less distraction
+      function updateGlowVisibility() {
+        const isDark = document.documentElement.classList.contains('dark');
+        if (isDark && !prefersReduced) glow.classList.remove('hidden');
+        else glow.classList.add('hidden');
+      }
+
+      updateGlowVisibility();
+
+      // Observe theme changes by watching localStorage (theme toggle updates localStorage)
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'theme') updateGlowVisibility();
+      });
+
+      // Also listen for manual toggles
+      const themeSwitch = document.getElementById('themeSwitch');
+      if (themeSwitch) themeSwitch.addEventListener('change', updateGlowVisibility);
+
+      if (prefersReduced) return; // don't run animation if reduced motion
+
+      let mouseX = window.innerWidth/2, mouseY = window.innerHeight/2;
+      let drawX = mouseX, drawY = mouseY;
+
+      const onMove = (e) => {
+        mouseX = e.clientX || (e.touches && e.touches[0].clientX) || mouseX;
+        mouseY = e.clientY || (e.touches && e.touches[0].clientY) || mouseY;
+        // slightly enlarge on movement
+        glow.style.transform = 'translate3d(' + mouseX + 'px,' + mouseY + 'px,0) scale(1)';
+        glow.style.opacity = '1';
+      };
+
+      window.addEventListener('mousemove', onMove, {passive:true});
+      window.addEventListener('touchmove', onMove, {passive:true});
+
+      function animate() {
+        // smooth trailing interpolation
+        drawX += (mouseX - drawX) * 0.12;
+        drawY += (mouseY - drawY) * 0.12;
+        glow.style.left = drawX + 'px';
+        glow.style.top = drawY + 'px';
+        requestAnimationFrame(animate);
+      }
+
+      requestAnimationFrame(animate);
+
+      // shrink and fade when idle
+      let idleTimer;
+      function resetIdle() {
+        glow.style.width = '160px';
+        glow.style.height = '160px';
+        glow.style.opacity = '0.95';
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(() => {
+          glow.style.width = '80px';
+          glow.style.height = '80px';
+          glow.style.opacity = '0.35';
+        }, 1200);
+      }
+
+      window.addEventListener('mousemove', resetIdle, {passive:true});
+      window.addEventListener('touchmove', resetIdle, {passive:true});
+      resetIdle();
+    })();
+  </script>
+  <!-- Load external background effects script (deferred) -->
+  <!-- Main page script: handles theme toggle, contact form, etc. -->
+  <script src="./script.js" defer></script>
+  <!-- Background effects (depends on theme state) -->
+  <script src="./bg-effects.js" defer></script>
+</div>
 
 </body>
 </html>

@@ -6,15 +6,7 @@ Welcome to my personal portfolio! This website showcases my projects, skills, ex
 
 🚀 **Live Demo:** [portfolio.sayan.qzz.io](https://portfolio.sayan.qzz.io)
 
----
-
-### 📸 Screenshots
-
-| Light Mode | Dark Mode |
-|---|---|
-| ![Light Mode Screenshot](1.jpg) | ![Dark Mode Screenshot](2.jpg) |
-
----
+-----
 
 ### ✨ Features
 

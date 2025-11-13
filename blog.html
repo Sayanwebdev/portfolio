@@ -147,7 +147,6 @@
               </svg>
             </label>
             <span id="themeLabel" class="block text-xs font-medium text-gray-600 dark:text-gray-400 mt-1">Light Mode</span>
-            <span id="themeLabel" class="block text-xs font-medium text-gray-600 dark:text-gray-400 mt-1">Light Mode</span>
           </div>
         </div>
 
@@ -163,67 +162,6 @@
       <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Recent Posts</h2>
       
       <div class="space-y-8">
-
-        <!-- Post: Why Does My Portfolio Have a Login Form? -->
-        <article class="blog-post bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-xl">
-          <div class="p-6 sm:p-8">
-            <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">Why Does My Portfolio Have a Login Form? (It's Not What You Think)</h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Published: 12 November 2025 • Sayan Mondal</p>
-
-            <div class="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
-              <p>If you've browsed my portfolio, you may have noticed the "Test Magic Link Login" form and wondered, "A login... for a static portfolio? Why?" That's a fair question. My portfolio has no private content, no members-only area, and no store — so why build a high-tech, secure login system for it?</p>
-
-              <p>The short answer: it's a tech demo. It's like installing a bank-vault door on a garden shed. The shed doesn't need the security, but building and installing the vault door proves you know how to.</p>
-
-              <h4 class="font-semibold">What is a "Magic Link" anyway?</h4>
-              <p>A magic link is a form of passwordless authentication you've likely seen on services like Slack or Medium. You enter your email address, the system sends a secure one-time link to your inbox, and when you click that link you're logged in — no password required. It's a clean, modern user experience, and I chose to build it as the demo for this site.</p>
-
-              <h4 class="font-semibold">The challenge: adding a backend to a static site</h4>
-              <p>A static site (HTML/CSS/JS) has no server-side components. To implement login you usually need:</p>
-              <ul class="list-disc list-inside ml-4">
-                <li>a database to store user emails</li>
-                <li>a server to process login requests</li>
-                <li>a secure way to create and verify one-time tokens</li>
-                <li>an email service to deliver the magic link</li>
-              </ul>
-              <p>Building all of that from scratch is a big project. Instead, I used a Backend-as-a-Service (BaaS).</p>
-
-              <h4 class="font-semibold">The solution: Backend-as-a-Service (Supabase)</h4>
-              <p>I used Supabase, an open-source alternative to Firebase. Supabase provides the backend pieces I needed in one package, so I didn't have to build an entire auth system from the ground up. At a high level the steps were:</p>
-              <ol class="list-decimal list-inside ml-4">
-                <li>Create a Supabase project and enable Email Authentication with Magic Link.</li>
-                <li>Add the <code>supabase-js</code> client to my site.</li>
-                <li>Write a small frontend function to call Supabase's auth API.</li>
-              </ol>
-
-              <h4 class="font-semibold">The core JavaScript (simplified)</h4>
-              <p>One short function does the work of requesting a magic link from Supabase:</p>
-              <pre class="bg-gray-100 dark:bg-gray-700 text-sm p-4 rounded"><code>const { data, error } = await supabase.auth.signInWithOtp({
-  email: userEmail,
-  options: { emailRedirectTo: window.location.origin }
-});</code></pre>
-              <p>Supabase handles token generation, email delivery, and verification. My frontend simply captures the email and calls that API.</p>
-
-              <h4 class="font-semibold">So — what's the point?</h4>
-              <p>This little feature is a trophy that demonstrates several skills:</p>
-              <ul class="list-disc list-inside ml-4">
-                <li>API integration — reading docs and wiring a third-party service.</li>
-                <li>Full-stack awareness — understanding authentication flows and sessions.</li>
-                <li>Modern JavaScript — async/await and promise handling.</li>
-                <li>Problem-solving — identifying a gap (no backend) and using a modern, scalable solution (BaaS).</li>
-              </ul>
-
-              <h4 class="font-semibold">What's next?</h4>
-              <p>Right now, the vault door sits on the shed. The next step is to build something worth protecting — for example, a real-time comments section or a live guestbook. Logged-in users could write to the Supabase database and others would see messages appear in real time.</p>
-
-              <p>If you'd like to try the login yourself, go back to the homepage and use the "Test Magic Link Login" form. It's a demo — please don't use production account credentials when testing.</p>
-            </div>
-
-            <div class="mt-6">
-              <a href="index.html" class="inline-block text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline">← Back to home</a>
-            </div>
-          </div>
-        </article>
 
         <!-- Post 1 -->
         <article class="blog-post bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-xl">

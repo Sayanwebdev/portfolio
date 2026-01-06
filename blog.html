@@ -166,25 +166,41 @@
         <!-- Post 1 -->
         <article class="blog-post bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-xl">
           <div class="p-6 sm:p-8">
-            <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">Building a Prepaid Energy Meter using ESP32 ⚡</h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Published: October 2025</p>
-            <div class="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
-              <p>
-                In this project, I developed a <strong>smart prepaid energy metering system</strong> using the ESP32 microcontroller. 
-                The system accurately measures real-time power consumption with the help of <strong>current and voltage sensors</strong> 
-                and automatically deducts credit based on energy usage. Once the prepaid balance reaches zero, 
-                the power supply is automatically disconnected to prevent overuse.
-              </p>
-              <p>
-                To enhance functionality, I integrated <strong>IoT connectivity</strong> that allows users to 
-                monitor their energy consumption and remaining balance through a <strong>cloud dashboard</strong>. 
-                The system also supports <strong>online recharge</strong> features and real-time alerts via 
-                <strong>Firebase or Blynk</strong> platforms. 
-              </p>
-              <p>
-                This project demonstrates how IoT and automation can make energy billing more transparent, 
-                efficient, and user-friendly, particularly in smart home and industrial applications.
-              </p>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+  Predictive Energy Management System (PEMS) with Weather-Integrated Smart Metering
+</h3>
+
+<p class="text-gray-700 dark:text-gray-300 leading-relaxed my-3">
+  A next-generation hybrid residential energy management solution designed to overcome the
+  limitations of traditional reactive systems. Unlike standard meters that only monitor and bill usage,
+  PEMS intelligently predicts future solar generation and household demand using ensemble
+  weather forecasting and an LSTM-based consumption prediction model.
+</p>
+
+<p class="text-gray-700 dark:text-gray-300 leading-relaxed my-3">
+  Built on ESP32, the system integrates real-time data from multiple weather APIs, current and
+  voltage sensing modules, and smart switching hardware. Every 15 minutes, the decision engine
+  evaluates predicted conditions and dynamically shifts power between the utility grid, rooftop
+  solar, and LiFePO4 battery storage to minimize energy cost, reduce unnecessary battery stress,
+  and increase household energy independence.
+</p>
+
+<p class="text-gray-700 dark:text-gray-300 leading-relaxed my-3">
+  The architecture includes an Intelligence Core (ESP32), an Intelligent Switching Unit with
+  high-current relays/contactors, SCT-based current sensors, voltage sensing, and complete
+  software intelligence deployed through TensorFlow Lite optimized for edge execution. The
+  framework supports user-selectable operating modes (Eco, Savings, Backup) and is designed
+  with regulatory safety features, fail-safe logic, and anti-islanding protection.
+</p>
+
+<p class="text-gray-700 dark:text-gray-300 leading-relaxed my-3">
+  Field validation demonstrates strong real-world performance, including ~27% reduction in
+  monthly electricity bills, a 21-point increase in solar self-consumption, and an estimated
+  20–25% improvement in battery life over conventional hybrid setups. Overall, PEMS transforms
+  residential hybrid systems from reactive to predictive, enabling smarter, greener, and more
+  cost-efficient energy usage.
+</p>
+
             </div>
             <a href="#" class="inline-block text-blue-600 dark:text-blue-400 font-semibold mt-6 hover:underline">
               Read More →

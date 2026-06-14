@@ -3,7 +3,5 @@ export { AboutSection } from "./about";
 export { SkillsSection } from "./skills";
 export { ExperienceSection } from "./experience";
 export { PortfolioSection } from "./portfolio";
-export { CertificationsSection } from "./certifications";
-export { AcademicsSection } from "./academics";
-export { HobbiesSection } from "./hobbies";
+export { DevopsTerminalSection } from "./devops-terminal";
 export { ContactSection } from "./contact";

@@ -4,45 +4,57 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Github, ArrowRight } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { MagicCard } from "@/components/ui/magic-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { BorderBeam } from "@/components/ui/border-beam";
 
-const categories = ["All", "IoT/ML", "Web", "Tools"];
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  category: string;
+  tags: string[];
+  githubUrl?: string;
+  liveUrl?: string;
+  featured: boolean;
+}
 
-const projects = [
+const categories = ["All", "Infrastructure", "CI/CD", "Monitoring"];
+
+const projects: Project[] = [
   {
     id: 1,
-    title: "Predictive Energy Management System (PEMS)",
-    description: "AI-driven hybrid smart metering system that predicts weather, forecasts energy demand, and automatically shifts power between grid, solar, and battery. Uses ESP32 with LSTM-based ML, intelligent switching, cost optimization, and battery life protection.",
+    title: "Automated Kubernetes GitOps Pipeline",
+    description: "Designed a GitOps deployment pipeline using ArgoCD and Kubernetes. Automates image builds via GitHub Actions, pushes to Docker Hub, and triggers Kubernetes manifest upgrades with dry-run verification policies.",
     image: "/11.png",
-    category: "IoT/ML",
-    tags: ["ESP32", "Python", "LSTM", "TensorFlow Lite", "IoT"],
+    category: "CI/CD",
+    tags: ["Kubernetes", "ArgoCD", "Helm", "GitHub Actions", "Docker"],
     githubUrl: "https://github.com/Sayanwebdev",
     featured: true,
   },
   {
     id: 2,
-    title: "Personal Portfolio",
-    description: "You're currently viewing my personal portfolio website — a responsive Next.js design focused on showcasing my skills, experience, and projects. Built with Next.js, TypeScript, Tailwind CSS, and Magic UI animations.",
+    title: "Terraform Multi-Region AWS Infrastructure",
+    description: "Orchestrated highly available, multi-zone AWS infrastructure using Terraform IaC module structure. Provisions secure VPC networking, public/private subnets, Auto-Scaling Groups behind Application Load Balancers, and RDS databases.",
     image: "/portfolio.png",
-    category: "Web",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Resend"],
-    liveUrl: "https://portfolio.sayan.qzz.io",
-    githubUrl: "https://github.com/Sayanwebdev/portfolio",
+    category: "Infrastructure",
+    tags: ["Terraform", "AWS", "VPC", "Route53", "IAM"],
+    githubUrl: "https://github.com/Sayanwebdev",
     featured: true,
   },
   {
     id: 3,
-    title: "Daily Habit Tracker — Habit Tracker Pro",
-    description: "Habit Tracker Pro helps you add and monitor daily habits, stay strict with streaks, and visualise progress as a completion percentage against your targets. Includes integrated calendar view for historical records with localStorage data persistence.",
+    title: "Prometheus & Grafana Container Monitoring Stack",
+    description: "Assembled a real-time site reliability and telemetry collection cluster using Prometheus. Queries microservices inside a Docker Swarm, tracks request counts, database locks, and alerts via Discord webhook.",
     image: "/habit.png",
-    category: "Tools",
-    tags: ["JavaScript", "LocalStorage", "Calendar", "Data Visualization"],
-    featured: false,
+    category: "Monitoring",
+    tags: ["Prometheus", "Grafana", "Docker Swarm", "Telemetry", "Alertmanager"],
+    githubUrl: "https://github.com/Sayanwebdev",
+    featured: true,
   },
 ];
 
@@ -103,8 +115,8 @@ export function PortfolioSection() {
           </div>
         </BlurFade>
 
-        {/* Projects Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        {/* Projects Grid with horizontal swiping on mobile */}
+        <div className="flex overflow-x-auto lg:grid lg:grid-cols-3 gap-6 snap-x snap-mandatory no-scrollbar pb-4 -mx-4 px-4 lg:mx-0 lg:px-0">
           <AnimatePresence mode="wait">
             {filteredProjects.map((project, index) => (
               <motion.div
@@ -114,6 +126,7 @@ export function PortfolioSection() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ delay: index * 0.1 }}
                 layout
+                className="snap-start flex-shrink-0 w-[82vw] sm:w-[320px] lg:w-auto h-full"
               >
                 <MagicCard className="group relative overflow-hidden bg-card h-full">
                   {project.featured && (
@@ -187,15 +200,35 @@ export function PortfolioSection() {
                       ))}
                     </div>
 
-                    {/* Link */}
-                    <Link
-                      href={project.liveUrl || "#"}
-                      target="_blank"
-                      className="inline-flex items-center text-sm text-primary hover:underline"
-                    >
-                      View Project
-                      <ArrowRight className="ml-1 h-4 w-4" />
-                    </Link>
+                    {/* Project Action Links (Highly Mobile & Accessibility Friendly) */}
+                    <div className="flex items-center gap-3 pt-2">
+                      {project.liveUrl ? (
+                        <Button
+                          asChild
+                          size="sm"
+                          className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-xs h-8 cursor-pointer"
+                        >
+                          <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="mr-1.5 h-3.5 w-3.5" />
+                            Live Demo
+                          </Link>
+                        </Button>
+                      ) : null}
+                      
+                      {project.githubUrl ? (
+                        <Button
+                          asChild
+                          size="sm"
+                          variant="outline"
+                          className="text-xs h-8 cursor-pointer"
+                        >
+                          <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                            <Github className="mr-1.5 h-3.5 w-3.5" />
+                            Code
+                          </Link>
+                        </Button>
+                      ) : null}
+                    </div>
                   </div>
                 </MagicCard>
               </motion.div>

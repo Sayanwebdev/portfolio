@@ -66,10 +66,11 @@ export function HeroSection() {
               </span>
               <TypingAnimation
                 words={[
-                  "Frontend Developer",
-                  "Python Enthusiast",
-                  "Data Engineer",
-                  "IoT Developer",
+                  "DevOps Engineer",
+                  "Cloud Engineer",
+                  "Automation Specialist",
+                  "Site Reliability Engineer",
+                  "Platform Engineer",
                 ]}
                 className="text-xl md:text-2xl font-semibold text-primary ml-2"
                 duration={100}
@@ -82,8 +83,7 @@ export function HeroSection() {
           {/* Description */}
           <BlurFade delay={0.4}>
             <p className="max-w-2xl text-lg text-muted-foreground">
-              4th year B.Tech student (ECE) at Dr. B. C. Roy Engineering College, Durgapur.
-              I build front-ends and work with Python & Java. Currently expanding my skills into DevOps.
+              B.Tech student at Dr. B. C. Roy Engineering College, Durgapur. Focused on automating deployments, provisioning secure Cloud Infrastructure (IaC), orchestrating containers, and establishing robust CI/CD pipelines.
             </p>
           </BlurFade>
 

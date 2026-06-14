@@ -65,19 +65,25 @@ const academics = [
 const certifications = [
   {
     id: 1,
-    title: "AWS Certified Solutions Architect (Associate)",
+    title: "AWS Certified Solutions Architect",
+    issuer: "Amazon Web Services (AWS)",
+    date: "Aug 2025",
     description: "Validated expertise in design and deployment of secure, robust, and highly available cloud applications using AWS services.",
     image: "/6.jpg",
   },
   {
     id: 2,
     title: "HashiCorp Certified: Terraform Associate",
+    issuer: "HashiCorp",
+    date: "Sept 2025",
     description: "Certified in writing declarative configuration files to automate virtual infrastructure management across multiple providers.",
     image: "/7.jpg",
   },
   {
     id: 3,
     title: "Certified Kubernetes Administrator (CKA)",
+    issuer: "Cloud Native Computing Foundation (CNCF)",
+    date: "Oct 2025",
     description: "Validated competence in configuring, setting up, and managing multi-node Kubernetes clusters, ingress controllers, and networking configs.",
     image: "/10.jpg",
   },
@@ -92,6 +98,7 @@ const hobbies = [
 
 export function AboutSection() {
   const [activeTab, setActiveTab] = useState("bio");
+  const [selectedCert, setSelectedCert] = useState<string | null>(null);
 
   return (
     <section id="about" className="py-20 sm:py-24 bg-muted/30 relative overflow-hidden">
@@ -264,21 +271,42 @@ export function AboutSection() {
                     <div className="flex overflow-x-auto md:grid md:grid-cols-3 gap-6 snap-x snap-mandatory no-scrollbar pb-4 -mx-4 px-4 md:mx-0 md:px-0">
                       {certifications.map((cert) => (
                         <div key={cert.id} className="snap-start flex-shrink-0 w-[82vw] sm:w-[280px] md:w-auto h-full">
-                          <MagicCard className="overflow-hidden bg-card/40 border border-border/30 hover:border-primary/20 transition-all duration-300 flex flex-col h-full">
-                            <div className="relative aspect-[4/3] w-full bg-muted overflow-hidden">
-                              <Image
-                                src={cert.image}
-                                alt={cert.title}
-                                fill
-                                sizes="(max-width: 768px) 100vw, 30vw"
-                                className="object-cover transition-transform duration-500 hover:scale-105"
-                              />
-                            </div>
-                            <div className="p-4 flex-1 flex flex-col justify-between">
-                              <div>
-                                <h4 className="font-bold text-base text-foreground leading-snug">{cert.title}</h4>
-                                <p className="text-xs text-muted-foreground mt-2 leading-relaxed line-clamp-3">{cert.description}</p>
+                          <MagicCard className="p-5 bg-card/40 border border-border/30 hover:border-primary/20 transition-all duration-300 flex flex-col justify-between h-full relative group">
+                            <div className="space-y-4">
+                              {/* Top Icon & Verified Badge */}
+                              <div className="flex items-center justify-between">
+                                <div className="p-2.5 rounded-xl bg-gradient-to-br from-purple-500/10 to-pink-500/10 text-primary border border-primary/10">
+                                  <Award className="h-5 w-5" />
+                                </div>
+                                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                                  Active
+                                </span>
                               </div>
+
+                              {/* Title, Issuer & Date */}
+                              <div className="space-y-1">
+                                <h4 className="font-bold text-base text-foreground leading-snug group-hover:text-primary transition-colors duration-300">
+                                  {cert.title}
+                                </h4>
+                                <div className="text-xs text-muted-foreground font-medium">
+                                  {cert.issuer} • <span className="text-muted-foreground/75">{cert.date}</span>
+                                </div>
+                              </div>
+
+                              <p className="text-xs text-muted-foreground/95 leading-relaxed line-clamp-3">
+                                {cert.description}
+                              </p>
+                            </div>
+
+                            {/* Action Link */}
+                            <div className="pt-4 border-t border-border/30 mt-4 flex items-center justify-between">
+                              <button
+                                onClick={() => setSelectedCert(cert.image)}
+                                className="text-xs font-semibold text-primary hover:underline flex items-center gap-1 cursor-pointer"
+                              >
+                                View Certificate ↗
+                              </button>
                             </div>
                           </MagicCard>
                         </div>
@@ -309,6 +337,42 @@ export function AboutSection() {
           </div>
         </div>
       </div>
+
+      {/* Lightbox Modal Overlay for Certifications */}
+      <AnimatePresence>
+        {selectedCert && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedCert(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-4 cursor-zoom-out select-none"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="relative max-w-3xl w-full max-h-[80vh] aspect-[4/3] overflow-hidden rounded-xl border border-white/10 shadow-2xl bg-slate-950"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={selectedCert}
+                alt="Certificate View"
+                fill
+                sizes="(max-width: 768px) 100vw, 80vw"
+                className="object-contain p-2"
+                priority
+              />
+              <button
+                onClick={() => setSelectedCert(null)}
+                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/60 hover:bg-black/80 text-white border border-white/20 transition-all select-none cursor-pointer w-9 h-9 flex items-center justify-center font-bold"
+              >
+                ✕
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

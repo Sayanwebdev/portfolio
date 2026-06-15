@@ -15,18 +15,14 @@ const navItems = [
   { href: "#skills", label: "Skills" },
   { href: "#experience", label: "Experience" },
   { href: "#portfolio", label: "Portfolio" },
-  { href: "#devops", label: "Terminal" },
   { href: "#contact", label: "Contact" },
 ];
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
-  const [isStatusOpen, setIsStatusOpen] = React.useState(false);
-  const [latency, setLatency] = React.useState(14);
   const [activeSection, setActiveSection] = React.useState("home");
   const [showScrollTop, setShowScrollTop] = React.useState(false);
-  const popoverRef = React.useRef<HTMLDivElement>(null);
 
   // Monitor scroll for header background and Back-to-Top visibility
   React.useEffect(() => {
@@ -38,28 +34,7 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Fluctuating latency simulation
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setLatency((prev) => {
-        const delta = Math.floor(Math.random() * 5) - 2; // -2 to +2
-        const nextVal = prev + delta;
-        return Math.max(11, Math.min(26, nextVal));
-      });
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
 
-  // Close status popover when clicking outside
-  React.useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
-        setIsStatusOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   // Scrollspy: Observe sections and update active menu item
   React.useEffect(() => {
@@ -142,116 +117,8 @@ export function Navbar() {
             })}
           </div>
 
-          {/* Actions (DevOps Badge, ThemeToggle, Mobile Menu) */}
+          {/* Actions (ThemeToggle, Mobile Menu) */}
           <div className="flex items-center gap-3 relative">
-            
-            {/* DevOps Status Widget */}
-            <div className="relative" ref={popoverRef}>
-              <button
-                onClick={() => setIsStatusOpen(!isStatusOpen)}
-                className="flex items-center gap-2 px-2.5 py-1.5 rounded-full text-xs font-semibold bg-muted hover:bg-muted/80 border border-border/50 shadow-sm transition-all duration-200 cursor-pointer select-none"
-                aria-label="DevOps Status Console"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </span>
-                <span className="text-muted-foreground hidden sm:inline-block">System:</span>
-                <span className="text-emerald-500 font-bold">Online</span>
-              </button>
-
-              {/* High-Tech Popover Dropdown */}
-              <AnimatePresence>
-                {isStatusOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    transition={{ duration: 0.15, ease: "easeOut" }}
-                    className="absolute right-0 mt-3 w-72 bg-popover/95 backdrop-blur-xl border border-border/80 shadow-xl rounded-xl p-4 z-50 text-foreground"
-                  >
-                    {/* Title Console Header */}
-                    <div className="flex items-center justify-between pb-3 border-b border-border/50 mb-3">
-                      <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
-                        <Activity className="h-3.5 w-3.5 text-emerald-500 animate-pulse" />
-                        DevOps Console
-                      </span>
-                      <span className="text-[10px] bg-emerald-500/15 text-emerald-500 font-bold px-2 py-0.5 rounded-full border border-emerald-500/20">
-                        SECURE
-                      </span>
-                    </div>
-
-                    {/* Metrics List */}
-                    <div className="space-y-3">
-                      {/* Environment */}
-                      <div className="flex items-center justify-between text-xs">
-                        <span className="text-muted-foreground flex items-center gap-1.5">
-                          <Cpu className="h-3.5 w-3.5 text-purple-500" />
-                          Environment
-                        </span>
-                        <span className="font-semibold text-foreground">Production</span>
-                      </div>
-
-                      {/* Uptime */}
-                      <div className="flex items-center justify-between text-xs">
-                        <span className="text-muted-foreground flex items-center gap-1.5">
-                          <ShieldCheck className="h-3.5 w-3.5 text-blue-500" />
-                          Uptime
-                        </span>
-                        <span className="font-semibold text-emerald-500">99.98%</span>
-                      </div>
-
-                      {/* Latency */}
-                      <div className="flex items-center justify-between text-xs">
-                        <span className="text-muted-foreground flex items-center gap-1.5">
-                          <Activity className="h-3.5 w-3.5 text-pink-500" />
-                          API Latency
-                        </span>
-                        <motion.span 
-                          key={latency}
-                          initial={{ opacity: 0.7 }}
-                          animate={{ opacity: 1 }}
-                          className="font-mono font-semibold text-foreground"
-                        >
-                          {latency} ms
-                        </motion.span>
-                      </div>
-
-                      {/* CI/CD Build pipeline */}
-                      <div className="flex items-center justify-between text-xs">
-                        <span className="text-muted-foreground flex items-center gap-1.5">
-                          <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
-                          Build Status
-                        </span>
-                        <span className="font-semibold text-foreground flex items-center gap-1">
-                          Passing <span className="text-[10px] text-muted-foreground font-mono">#148</span>
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Divider */}
-                    <div className="h-px bg-border/50 my-3" />
-
-                    {/* Commit details */}
-                    <div className="space-y-1">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
-                        <GitBranch className="h-3 w-3 text-amber-500" />
-                        Active Release
-                      </span>
-                      <div className="bg-muted/50 border border-border/30 rounded p-2 mt-1">
-                        <p className="text-[11px] font-mono text-foreground font-semibold leading-relaxed truncate">
-                          feat: optimize layout & devops UI
-                        </p>
-                        <p className="text-[9px] font-mono text-muted-foreground mt-0.5">
-                          SHA: <span className="text-foreground">e2a48b1</span> • main
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
             <ThemeToggle />
 
             {/* Mobile Menu */}

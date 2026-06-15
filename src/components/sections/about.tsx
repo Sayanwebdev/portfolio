@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { User, GraduationCap, Award, Heart, GitBranch, Cloud, Cpu, Terminal } from "lucide-react";
+import { User, GraduationCap, Award, Heart, Code2, Palette, Sparkles, Zap } from "lucide-react";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { MagicCard } from "@/components/ui/magic-card";
 import { TextAnimate } from "@/components/ui/text-animate";
@@ -17,24 +17,24 @@ const tabs = [
 
 const highlights = [
   {
-    icon: GitBranch,
-    title: "CI/CD Pipelines",
-    description: "Automating testing and build workflows with GitHub Actions",
+    icon: Code2,
+    title: "Frontend Development",
+    description: "Building responsive web applications",
   },
   {
-    icon: Cloud,
-    title: "Infrastructure as Code",
-    description: "Declarative cloud provisioning using Terraform",
+    icon: Palette,
+    title: "Python & Java",
+    description: "Backend and data engineering",
   },
   {
-    icon: Cpu,
-    title: "Containers & K8s",
-    description: "Dockerizing applications and orchestrating on Kubernetes",
+    icon: Zap,
+    title: "IoT & ML",
+    description: "ESP32, LSTM, predictive systems",
   },
   {
-    icon: Terminal,
-    title: "Automation Scripting",
-    description: "Writing robust automation scripts in Bash & Python",
+    icon: Sparkles,
+    title: "DevOps Learning",
+    description: "Expanding into infrastructure",
   },
 ];
 
@@ -43,21 +43,21 @@ const academics = [
     degree: "B.Tech (ECE)",
     institution: "Dr. B. C. Roy Engineering College, Durgapur",
     status: "ongoing",
-    details: "Focusing on electronics, digital networks, software automation, and cloud system topologies.",
+    details: "Focusing on Electronics and Communication Engineering fundamentals and programming.",
     icon: "🎓",
   },
   {
     degree: "Higher Secondary Education (HSC)",
     institution: "Maliara R. N. High School",
     status: "completed",
-    details: "Completed secondary education in Science stream with mathematics and physics concentration.",
+    details: "Completed Higher Secondary education with Science stream.",
     icon: "📚",
   },
   {
     degree: "Secondary Education (SSC)",
     institution: "Nityanandapur High School",
     status: "completed",
-    details: "Foundational secondary education with standard sciences.",
+    details: "Completed foundational Secondary education.",
     icon: "🏫",
   },
 ];
@@ -65,35 +65,35 @@ const academics = [
 const certifications = [
   {
     id: 1,
-    title: "AWS Certified Solutions Architect",
-    issuer: "Amazon Web Services (AWS)",
-    date: "Aug 2025",
-    description: "Validated expertise in design and deployment of secure, robust, and highly available cloud applications using AWS services.",
+    title: "AI Tools Workshop (Be10x)",
+    issuer: "Be10x",
+    date: "2024",
+    description: "Completed a workshop focused on using Artificial Intelligence tools to enhance productivity and automate tasks efficiently.",
     image: "/6.jpg",
   },
   {
     id: 2,
-    title: "HashiCorp Certified: Terraform Associate",
-    issuer: "HashiCorp",
-    date: "Sept 2025",
-    description: "Certified in writing declarative configuration files to automate virtual infrastructure management across multiple providers.",
+    title: "MATLAB Programming Certification",
+    issuer: "Dr. B. C. Roy Engineering College",
+    date: "2024",
+    description: "Gained hands-on experience with MATLAB for engineering problem-solving, data visualization, and signal processing applications.",
     image: "/7.jpg",
   },
   {
     id: 3,
-    title: "Certified Kubernetes Administrator (CKA)",
-    issuer: "Cloud Native Computing Foundation (CNCF)",
-    date: "Oct 2025",
-    description: "Validated competence in configuring, setting up, and managing multi-node Kubernetes clusters, ingress controllers, and networking configs.",
+    title: "Power BI Workshop (OfficeMaster)",
+    issuer: "OfficeMaster",
+    date: "Aug 17, 2025",
+    description: "Successfully completed the Power BI Workshop. Skilled in creating AI-powered interactive dashboards in Power BI.",
     image: "/10.jpg",
   },
 ];
 
 const hobbies = [
-  { name: "Self-Hosting", icon: "🌐", desc: "Running a local home-lab server, managing DNS, and hosting containerized services" },
-  { name: "Linux Customization", icon: "🐧", desc: "Configuring dotfiles, kernel parameters, and writing custom shell scripts" },
-  { name: "Coding Challenges", icon: "💻", desc: "Solving automation scripting algorithms and debugging server issues" },
-  { name: "Photography", icon: "📸", desc: "Capturing details, precision, and perspective edits" },
+  { name: "Cricket", icon: "🏏", desc: "Playing and watching cricket matches" },
+  { name: "Badminton", icon: "🏸", desc: "Playing friendly badminton games" },
+  { name: "Coding", icon: "💻", desc: "Building software, web pages and problem-solving" },
+  { name: "Photography", icon: "📸", desc: "Capturing beautiful moments and landscapes" },
 ];
 
 export function AboutSection() {
@@ -209,10 +209,10 @@ export function AboutSection() {
                           by="word"
                           className="text-lg"
                         >
-                          I am a B.Tech student majoring in Electronics and Communication Engineering (ECE) at Dr. B. C. Roy Engineering College, Durgapur. I specialize in DevOps and cloud systems, configuring CI/CD pipelines, automating deployments, and maintaining serverless and containerized microservices.
+                          I am a B.Tech student majoring in Electronics and Communication Engineering (ECE) at Dr. B. C. Roy Engineering College, Durgapur. I build front-ends and work with Python & Java.
                         </TextAnimate>
                         <p>
-                          My core project work involves designing and hosting high-availability web services, integrating GitOps pipelines (ArgoCD & Kubernetes), and writing Infrastructure as Code configurations (Terraform) to orchestrate multi-region cloud applications.
+                          Ongoing project: <strong>Predictive Energy Management System (PEMS)</strong> — Weather-Integrated, machine learning-driven smart metering system that predicts weather, forecasts energy demand, and automatically shifts power between grid, solar, and battery.
                         </p>
                       </div>
 

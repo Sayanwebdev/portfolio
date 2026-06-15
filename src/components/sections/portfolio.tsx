@@ -23,38 +23,39 @@ interface Project {
   featured: boolean;
 }
 
-const categories = ["All", "Infrastructure", "CI/CD", "Monitoring"];
+const categories = ["All", "IoT/ML", "Web", "Tools"];
 
 const projects: Project[] = [
   {
     id: 1,
-    title: "Automated Kubernetes GitOps Pipeline",
-    description: "Designed a GitOps deployment pipeline using ArgoCD and Kubernetes. Automates image builds via GitHub Actions, pushes to Docker Hub, and triggers Kubernetes manifest upgrades with dry-run verification policies.",
+    title: "Predictive Energy Management System (PEMS)",
+    description: "AI-driven hybrid smart metering system that predicts weather, forecasts energy demand, and automatically shifts power between grid, solar, and battery. Uses ESP32 with LSTM-based ML, intelligent switching, cost optimization, and battery life protection.",
     image: "/11.png",
-    category: "CI/CD",
-    tags: ["Kubernetes", "ArgoCD", "Helm", "GitHub Actions", "Docker"],
+    category: "IoT/ML",
+    tags: ["ESP32", "Python", "LSTM", "TensorFlow Lite", "IoT"],
     githubUrl: "https://github.com/Sayanwebdev",
     featured: true,
   },
   {
     id: 2,
-    title: "Terraform Multi-Region AWS Infrastructure",
-    description: "Orchestrated highly available, multi-zone AWS infrastructure using Terraform IaC module structure. Provisions secure VPC networking, public/private subnets, Auto-Scaling Groups behind Application Load Balancers, and RDS databases.",
+    title: "Personal Portfolio",
+    description: "You're currently viewing my personal portfolio website — a responsive Next.js design focused on showcasing my skills, experience, and projects. Built with Next.js, TypeScript, Tailwind CSS, and Magic UI animations.",
     image: "/portfolio.png",
-    category: "Infrastructure",
-    tags: ["Terraform", "AWS", "VPC", "Route53", "IAM"],
-    githubUrl: "https://github.com/Sayanwebdev",
+    category: "Web",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Resend"],
+    liveUrl: "https://portfolio.sayan.qzz.io",
+    githubUrl: "https://github.com/Sayanwebdev/portfolio",
     featured: true,
   },
   {
     id: 3,
-    title: "Prometheus & Grafana Container Monitoring Stack",
-    description: "Assembled a real-time site reliability and telemetry collection cluster using Prometheus. Queries microservices inside a Docker Swarm, tracks request counts, database locks, and alerts via Discord webhook.",
+    title: "Daily Habit Tracker — Habit Tracker Pro",
+    description: "Habit Tracker Pro helps you add and monitor daily habits, stay strict with streaks, and visualise progress as a completion percentage against your targets. Includes integrated calendar view for historical records with localStorage data persistence.",
     image: "/habit.png",
-    category: "Monitoring",
-    tags: ["Prometheus", "Grafana", "Docker Swarm", "Telemetry", "Alertmanager"],
+    category: "Tools",
+    tags: ["JavaScript", "LocalStorage", "Calendar", "Data Visualization"],
     githubUrl: "https://github.com/Sayanwebdev",
-    featured: true,
+    featured: false,
   },
 ];
 

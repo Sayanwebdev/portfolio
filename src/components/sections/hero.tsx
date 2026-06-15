@@ -13,7 +13,7 @@ import { useTheme } from "next-themes";
 const socialLinks = [
   { href: "https://github.com/Sayanwebdev", icon: Github, label: "GitHub" },
   { href: "https://linkedin.com/in/sayan-mondal-746255314", icon: Linkedin, label: "LinkedIn" },
-  { href: "mailto:myself@sayan.qzz.io", icon: Mail, label: "Email" },
+  { href: "mailto:mail@smops.in", icon: Mail, label: "Email" },
 ];
 
 export function HeroSection() {

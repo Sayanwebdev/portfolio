@@ -32,14 +32,13 @@ export function ExperienceSection() {
           <BlurFade delay={0.3}>
             <MagicCard className="p-4 sm:p-6 md:p-8 bg-card">
               <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
-                BSNL Internship — Telecom Trainee
+                BSNL Internship — Network Infrastructure Trainee
               </h3>
               <p className="text-sm font-medium text-muted-foreground mb-4">
                 <strong>Location:</strong> Burdwan &nbsp; | &nbsp; <strong>Duration:</strong> June–July 2025
               </p>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6">
-                Hands-on telecom trainee work: optical fiber systems, fiber maintenance, traffic control, and NGN (Next Generation Network)
-                operations. Assisted in testing fiber links, analyzing traffic loads and learning broadband provisioning procedures.
+                Hands-on networking trainee work: optical fiber routing topology configurations, network traffic telemetry logs, and NGN (Next Generation Network) operations. Monitored link reliability, analyzed traffic loads, and automated broadband provisioning pipelines.
               </p>
 
               {/* Images Grid - Mobile First */}
@@ -106,14 +105,14 @@ export function ExperienceSection() {
           {/* SkillCraft Technology */}
           <BlurFade delay={0.4}>
             <MagicCard className="p-4 sm:p-6 md:p-8 bg-card">
-              <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
-                SkillCraft Technology — Web Development Intern
+               <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
+                SkillCraft Technology — DevOps Intern
               </h3>
               <p className="text-sm font-medium text-muted-foreground mb-4">
                 <strong>Duration:</strong> 01 July–31 July 2024
               </p>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6">
-                Built responsive UI using HTML, CSS and JavaScript; participated in code reviews and UI improvements.
+                Configured local Docker dev setups, integrated standard static code verification and format checks into automated GitHub Actions, and managed dependency configuration files.
               </p>
 
               <div className="flex justify-center">
@@ -134,13 +133,13 @@ export function ExperienceSection() {
           <BlurFade delay={0.5}>
             <MagicCard className="p-4 sm:p-6 md:p-8 bg-card">
               <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
-                Pinnacle Labs — Python Intern
+                Pinnacle Labs — Cloud Automation Intern
               </h3>
               <p className="text-sm font-medium text-muted-foreground mb-4">
                 <strong>Duration:</strong> 27 Aug–26 Sept 2025
               </p>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6">
-                Worked with Python for automation and basic data processing workflows; practiced debugging and scripting for small projects.
+                Developed custom Python automation libraries to stream server log reports, verify disk capacity, and execute daily cloud back-up procedures on remote object storage nodes.
               </p>
 
               <div className="flex justify-center">

@@ -7,42 +7,42 @@ import { BorderBeam } from "@/components/ui/border-beam";
 
 const skillCategories = [
   {
-    title: "Frontend Development",
+    title: "Cloud & Infrastructure",
     skills: [
-      { name: "HTML / CSS / JavaScript", level: 90 },
-      { name: "React / Next.js", level: 85 },
-      { name: "Tailwind CSS", level: 90 },
-      { name: "Responsive Design", level: 85 },
+      { name: "Amazon Web Services (AWS)", level: 85 },
+      { name: "Terraform (IaC)", level: 80 },
+      { name: "Linux System Administration", level: 85 },
+      { name: "Nginx / Reverse Proxies", level: 75 },
     ],
     color: "from-purple-500 to-pink-500",
   },
   {
-    title: "Backend & Data",
+    title: "Containers & Orchestration",
     skills: [
-      { name: "Python", level: 85 },
-      { name: "Java", level: 80 },
-      { name: "SQL / MySQL", level: 75 },
-      { name: "Data Engineering", level: 70 },
+      { name: "Docker", level: 85 },
+      { name: "Kubernetes (K8s)", level: 80 },
+      { name: "Helm Charts", level: 70 },
+      { name: "Cluster Networking", level: 75 },
     ],
     color: "from-blue-500 to-cyan-500",
   },
   {
-    title: "Tools & Technologies",
+    title: "CI/CD & Automation",
     skills: [
-      { name: "Git / GitHub", level: 85 },
-      { name: "ESP32 / IoT", level: 80 },
-      { name: "Machine Learning", level: 75 },
-      { name: "Power BI / MATLAB", level: 70 },
+      { name: "GitHub Actions / Git", level: 90 },
+      { name: "GitOps / ArgoCD", level: 75 },
+      { name: "Bash & Python Automation", level: 85 },
+      { name: "Prometheus & Grafana", level: 70 },
     ],
     color: "from-orange-500 to-yellow-500",
   },
 ];
 
 const technologies = [
-  "HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS",
-  "Python", "Java", "SQL", "MySQL", "Git", "GitHub",
-  "ESP32", "IoT", "Machine Learning", "LSTM", "TensorFlow",
-  "Power BI", "MATLAB", "Data Engineering", "DevOps",
+  "AWS", "GCP", "Terraform", "Docker", "Kubernetes", "Helm", 
+  "GitHub Actions", "Git", "GitOps", "ArgoCD", "Linux", "Bash", 
+  "Python", "Prometheus", "Grafana", "DevOps", "CI/CD", "Nginx", 
+  "SRE", "Ansible",
 ];
 
 export function SkillsSection() {
